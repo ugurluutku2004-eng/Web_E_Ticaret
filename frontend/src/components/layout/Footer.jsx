@@ -28,13 +28,13 @@ export default function Footer() {
           <p className="mb-2 font-semibold text-ink-900">Iletisim</p>
           <ul className="space-y-1">
             <li>
-              <a className="hover:text-brand-600" href="mailto:support@u-ticaret.com">
-                support@u-ticaret.com
+              <a className="hover:text-brand-600" href="mailto:ugurluutku2004@gmail.com">
+                ugurluutku2004@gmail.com
               </a>
             </li>
             <li>
-              <a className="hover:text-brand-600" href="tel:+905550000000">
-                +90 555 000 00 00
+              <a className="hover:text-brand-600" href="tel:+905464732843">
+                +90 546 473 28 43
               </a>
             </li>
             <li>Istanbul, TR</li>

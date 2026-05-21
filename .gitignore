@@ -1,3 +1,11 @@
+# NOTE: Local-only documents
+#
+# Bu dosyalar bilerek GitHub'a gonderilmez (push/PR'a dahil edilmez).
+# Amac: ders/proje notlari ve yerel raporlarin repoda birikmesini engellemek.
+#
+# Eger yanlislikla git'e eklediyseniz, once index'ten cikarin:
+#   git rm --cached <dosya>
+#
 # Docs and report files to keep local only
 BACKEND.md
 FRONTEND.md

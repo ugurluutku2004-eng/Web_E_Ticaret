@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Footer() {
   return (
     <footer className="border-t border-sand-200 bg-white">
@@ -11,16 +13,30 @@ export default function Footer() {
         <div className="text-sm text-ink-600">
           <p className="mb-2 font-semibold text-ink-900">Hizli Linkler</p>
           <ul className="space-y-1">
-            <li>Hakkimizda</li>
-            <li>Yardim Merkezi</li>
-            <li>KVKK & Gizlilik</li>
+            <li>
+              <Link className="hover:text-brand-600" to="/about">Hakkimizda</Link>
+            </li>
+            <li>
+              <Link className="hover:text-brand-600" to="/help">Yardim Merkezi</Link>
+            </li>
+            <li>
+              <Link className="hover:text-brand-600" to="/privacy">KVKK & Gizlilik</Link>
+            </li>
           </ul>
         </div>
         <div className="text-sm text-ink-600">
           <p className="mb-2 font-semibold text-ink-900">Iletisim</p>
           <ul className="space-y-1">
-            <li>support@u-ticaret.com</li>
-            <li>+90 555 000 00 00</li>
+            <li>
+              <a className="hover:text-brand-600" href="mailto:support@u-ticaret.com">
+                support@u-ticaret.com
+              </a>
+            </li>
+            <li>
+              <a className="hover:text-brand-600" href="tel:+905550000000">
+                +90 555 000 00 00
+              </a>
+            </li>
             <li>Istanbul, TR</li>
           </ul>
         </div>

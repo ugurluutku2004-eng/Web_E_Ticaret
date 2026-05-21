@@ -24,6 +24,10 @@ import AdminProducts from './pages/admin/AdminProducts';
 import AdminOrders from './pages/admin/AdminOrders';
 import AdminUsers from './pages/admin/AdminUsers';
 
+import AboutPage from './pages/static/AboutPage';
+import HelpPage from './pages/static/HelpPage';
+import PrivacyPage from './pages/static/PrivacyPage';
+
 export default function App() {
   return (
     <Routes>
@@ -37,6 +41,9 @@ export default function App() {
         <Route path="/account" element={<AccountPage />} />
         <Route path="/account/settings" element={<AccountSettingsPage />} />
         <Route path="/account/payments" element={<AccountPaymentsPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/help" element={<HelpPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
 

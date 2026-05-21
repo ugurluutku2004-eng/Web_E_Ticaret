@@ -40,7 +40,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-wrap gap-3">
             <Button to="/products">Alisverise basla</Button>
-            <Button to="/products" variant="ghost">Kampanyalari gor</Button>
+            <Button to="/category/elektronik" variant="ghost">Kampanyalari gor</Button>
           </div>
         </div>
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-200 via-brand-100 to-sand-50 p-6">
@@ -65,7 +65,7 @@ export default function HomePage() {
           {categories.map((cat) => (
             <Link
               key={cat.title}
-              to={`/products?category=${slugify(cat.title)}`}
+              to={`/category/${slugify(cat.title)}`}
               className="rounded-3xl border border-sand-200 bg-white p-6 transition hover:-translate-y-1 hover:shadow-card"
             >
               <p className="text-xs uppercase tracking-widest text-ink-400">U-Ticaret</p>

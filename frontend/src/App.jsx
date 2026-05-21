@@ -14,6 +14,10 @@ import ProfilePage from './pages/ProfilePage';
 import OrdersPage from './pages/OrdersPage';
 import OrderDetailPage from './pages/OrderDetailPage';
 import NotFoundPage from './pages/NotFoundPage';
+import CategoryPage from './pages/categories/CategoryPage';
+import AccountPage from './pages/account/AccountPage';
+import AccountSettingsPage from './pages/account/AccountSettingsPage';
+import AccountPaymentsPage from './pages/account/AccountPaymentsPage';
 
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminProducts from './pages/admin/AdminProducts';
@@ -27,8 +31,12 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/:id" element={<ProductDetailPage />} />
+        <Route path="/category/:slug" element={<CategoryPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/account" element={<AccountPage />} />
+        <Route path="/account/settings" element={<AccountSettingsPage />} />
+        <Route path="/account/payments" element={<AccountPaymentsPage />} />
 
         <Route element={<PrivateRoute />}>
           <Route path="/cart" element={<CartPage />} />

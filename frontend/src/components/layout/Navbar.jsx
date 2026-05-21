@@ -31,7 +31,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <Link
-            to="/login"
+            to="/account"
             className="flex items-center gap-2 rounded-full border border-sand-200 px-3 py-2 text-sm text-ink-700"
           >
             <User className="h-4 w-4" />
@@ -52,7 +52,7 @@ export default function Navbar() {
           {categories.map((item) => (
             <Link
               key={item}
-              to={`/products?category=${slugify(item)}`}
+              to={`/category/${slugify(item)}`}
               className="whitespace-nowrap hover:text-brand-500"
             >
               {item}

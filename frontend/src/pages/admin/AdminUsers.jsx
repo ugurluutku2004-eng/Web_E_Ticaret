@@ -1,4 +1,5 @@
 import Button from '../../components/ui/Button';
+import toast from 'react-hot-toast';
 
 export default function AdminUsers() {
   return (
@@ -17,7 +18,12 @@ export default function AdminUsers() {
                 <p className="text-sm font-semibold text-ink-900">{entry.name}</p>
                 <p className="text-xs text-ink-500">{entry.email} • {entry.role}</p>
               </div>
-              <Button variant="ghost" onClick={() => {}}>Guncelle</Button>
+              <Button
+                variant="ghost"
+                onClick={() => toast('Demo: Kullanici guncelleme aksiyonu henuz baglanmadi.')}
+              >
+                Guncelle
+              </Button>
             </div>
           ))}
         </div>

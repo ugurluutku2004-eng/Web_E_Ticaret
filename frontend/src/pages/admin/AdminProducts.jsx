@@ -1,5 +1,6 @@
 import Button from '../../components/ui/Button';
 import { products } from '../../data/catalog';
+import toast from 'react-hot-toast';
 
 export default function AdminProducts() {
   return (
@@ -9,7 +10,10 @@ export default function AdminProducts() {
       <div className="mt-8 rounded-3xl border border-sand-200 bg-white p-6 shadow-soft">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="text-sm text-ink-600">Urun listesi (demo)</p>
-          <Button variant="ghost" onClick={() => {}}>
+          <Button
+            variant="ghost"
+            onClick={() => toast('Demo: Urun ekleme aksiyonu henuz baglanmadi.')}
+          >
             Yeni urun ekle
           </Button>
         </div>
@@ -23,7 +27,12 @@ export default function AdminProducts() {
               </div>
               <div className="flex items-center gap-2">
                 <Button to={`/products/${product.id}`} variant="ghost">Goruntule</Button>
-                <Button variant="ghost" onClick={() => {}}>Duzenle</Button>
+                <Button
+                  variant="ghost"
+                  onClick={() => toast('Demo: Urun duzenleme aksiyonu henuz baglanmadi.')}
+                >
+                  Duzenle
+                </Button>
               </div>
             </div>
           ))}

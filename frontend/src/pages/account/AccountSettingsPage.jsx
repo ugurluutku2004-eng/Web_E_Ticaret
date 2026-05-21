@@ -1,9 +1,73 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
+
+import Button from '../../components/ui/Button';
+
 export default function AccountSettingsPage() {
+  const { user } = useSelector((state) => state.auth);
+  const [name, setName] = useState(user?.name ?? '');
+  const [email, setEmail] = useState(user?.email ?? '');
+  const [password, setPassword] = useState('');
+
+  const onSave = (e) => {
+    e.preventDefault();
+    toast.success('Kaydedildi (demo)');
+    setPassword('');
+  };
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
       <p className="text-xs uppercase tracking-widest text-brand-500">Hesap Ayarlari</p>
       <h1 className="mt-2 font-display text-4xl text-ink-900">Profil Ayarlari</h1>
-      <p className="mt-3 text-sm text-ink-500">Kullanici bilgilerini guncelleme alani yakinda.</p>
+
+      <div className="mt-8 max-w-2xl rounded-3xl border border-sand-200 bg-white p-6 shadow-soft">
+        <form className="space-y-4" onSubmit={onSave}>
+          <div>
+            <label className="text-sm text-ink-700" htmlFor="name">Ad Soyad</label>
+            <input
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="mt-2 w-full rounded-2xl border border-sand-200 px-4 py-3 text-sm text-ink-900 focus:outline-none"
+              placeholder="Ad Soyad"
+            />
+          </div>
+
+          <div>
+            <label className="text-sm text-ink-700" htmlFor="email">E-posta</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="mt-2 w-full rounded-2xl border border-sand-200 px-4 py-3 text-sm text-ink-900 focus:outline-none"
+              placeholder="ornek@mail.com"
+            />
+          </div>
+
+          <div>
+            <label className="text-sm text-ink-700" htmlFor="password">Sifre degistir</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="mt-2 w-full rounded-2xl border border-sand-200 px-4 py-3 text-sm text-ink-900 focus:outline-none"
+              placeholder="Yeni sifre (opsiyonel)"
+            />
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            <Button type="submit">Kaydet</Button>
+            <Button to="/account" variant="ghost">Hesap merkezine don</Button>
+          </div>
+        </form>
+
+        <p className="mt-6 text-xs text-ink-500">
+          Not: Bu sayfa demo olarak calisir. Gercek guncelleme backend endpoint’leri ile baglanir.
+        </p>
+      </div>
     </div>
   );
 }

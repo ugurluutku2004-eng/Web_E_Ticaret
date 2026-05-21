@@ -37,10 +37,10 @@ export default function App() {
         <Route path="/account" element={<AccountPage />} />
         <Route path="/account/settings" element={<AccountSettingsPage />} />
         <Route path="/account/payments" element={<AccountPaymentsPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
 
         <Route element={<PrivateRoute />}>
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/orders/:id" element={<OrderDetailPage />} />

@@ -3,27 +3,12 @@ import { Link } from 'react-router-dom';
 import ProductCard from '../components/product/ProductCard';
 import SectionHeader from '../components/product/SectionHeader';
 
-const categories = [
-  { title: 'Elektronik', count: '248 urun' },
-  { title: 'Telefonlar', count: '92 urun' },
-  { title: 'Giyim', count: '310 urun' },
-  { title: 'Ev & Yasam', count: '140 urun' },
-  { title: 'Spor', count: '86 urun' },
-  { title: 'Kozmetik', count: '64 urun' },
-];
+import { categories, featuredProducts, products } from '../data/catalog';
 
-const slugify = (value) =>
-  value
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/&/g, 'and');
-
-const products = [
-  { name: 'Aurora Kulaklik', price: '1299', category: 'Elektronik', short: 'Yuksek bass, net ses.' },
-  { name: 'Nova Akilli Saat', price: '1999', category: 'Telefonlar', short: 'Guncel saglik takibi.' },
-  { name: 'Savana Sirt Canta', price: '799', category: 'Spor', short: 'Her mevsime uygun.' },
-  { name: 'Linea Kahve Seti', price: '549', category: 'Ev & Yasam', short: 'Minimal mutfak stili.' },
-];
+const getCategoryCountText = (slug) => {
+  const count = products.filter((product) => product.categorySlug === slug).length;
+  return `${count} urun`;
+};
 
 export default function HomePage() {
   return (
@@ -64,13 +49,13 @@ export default function HomePage() {
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {categories.map((cat) => (
             <Link
-              key={cat.title}
-              to={`/category/${slugify(cat.title)}`}
+              key={cat.slug}
+              to={`/category/${cat.slug}`}
               className="rounded-3xl border border-sand-200 bg-white p-6 transition hover:-translate-y-1 hover:shadow-card"
             >
               <p className="text-xs uppercase tracking-widest text-ink-400">U-Ticaret</p>
-              <h3 className="mt-2 text-xl font-semibold text-ink-900">{cat.title}</h3>
-              <p className="mt-1 text-sm text-ink-500">{cat.count}</p>
+              <h3 className="mt-2 text-xl font-semibold text-ink-900">{cat.name}</h3>
+              <p className="mt-1 text-sm text-ink-500">{getCategoryCountText(cat.slug)}</p>
             </Link>
           ))}
         </div>
@@ -83,7 +68,7 @@ export default function HomePage() {
           action={<Button to="/products" variant="dark">Tum urunler</Button>}
         />
         <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {products.map((product) => (
+          {featuredProducts.map((product) => (
             <ProductCard key={product.name} product={product} />
           ))}
         </div>

@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import Button from '../ui/Button';
 import StarRating from './StarRating';
 import { addItem } from '../../features/cart/cartSlice';
+import { getCategoryIcon } from '../../lib/categoryIcons';
 
 const formatPrice = (value) =>
   new Intl.NumberFormat('tr-TR', {
@@ -16,6 +17,12 @@ const formatPrice = (value) =>
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const CategoryIcon = getCategoryIcon(product.categorySlug);
+  const hasDiscount = Boolean(product.oldPrice && product.oldPrice > product.price);
+  const discountPct = hasDiscount
+    ? Math.round((1 - product.price / product.oldPrice) * 100)
+    : 0;
 
   const handleAddToCart = (event) => {
     event.preventDefault();
@@ -30,7 +37,7 @@ export default function ProductCard({ product }) {
         qty: 1,
       })
     );
-    toast.success('Sepete eklendi');
+    toast.success('Ürün sepete eklendi');
   };
 
   const handleBuyNow = (event) => {
@@ -52,31 +59,48 @@ export default function ProductCard({ product }) {
   return (
     <Link
       to={`/products/${product.id}`}
-      className="block rounded-3xl border border-sand-200 bg-white p-4 shadow-card transition hover:-translate-y-1 hover:shadow-soft"
+      className="flex h-full flex-col rounded-2xl border border-sand-200 bg-white p-3 shadow-card transition hover:-translate-y-1 hover:shadow-soft sm:rounded-3xl sm:p-4"
     >
-      <div className="aspect-square rounded-2xl bg-sand-100" />
-      <div className="mt-4 space-y-2">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <p className="text-xs uppercase tracking-widest text-ink-400">{product.category}</p>
-            <p className="mt-1 text-lg font-semibold text-ink-900">{product.name}</p>
-            <p className="mt-1 text-xs text-ink-500">Model: {product.model}</p>
+      <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-sand-100 sm:rounded-2xl">
+        {hasDiscount ? (
+          <span className="absolute left-2 top-2 rounded-full bg-brand-500 px-2 py-0.5 text-[11px] font-semibold text-white shadow-sm">
+            %{discountPct} indirim
+          </span>
+        ) : null}
+      </div>
+
+      <div className="mt-3 flex flex-1 flex-col gap-2">
+        <div className="flex items-start justify-between gap-2">
+          <div className="min-w-0">
+            <p className="flex items-center gap-1 text-[11px] uppercase tracking-widest text-ink-400">
+              <CategoryIcon size={12} className="shrink-0" />
+              <span className="truncate">{product.category}</span>
+            </p>
+            <p className="mt-1 truncate text-base font-semibold text-ink-900 sm:text-lg">
+              {product.name}
+            </p>
+            <p className="mt-0.5 text-xs text-ink-500">Model: {product.model}</p>
           </div>
           <div className="shrink-0">
-            <StarRating value={product.rating} size={14} />
+            <StarRating value={product.rating} size={13} />
           </div>
         </div>
 
-        <p className="text-sm text-ink-500">{product.short}</p>
+        <p className="line-clamp-2 text-sm text-ink-500">{product.short}</p>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-          <span className="text-lg font-semibold text-ink-900">{formatPrice(product.price)}</span>
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" onClick={handleAddToCart}>
+        <div className="mt-auto pt-1">
+          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0">
+            <span className="text-lg font-semibold text-ink-900">{formatPrice(product.price)}</span>
+            {hasDiscount ? (
+              <span className="text-xs text-ink-400 line-through">{formatPrice(product.oldPrice)}</span>
+            ) : null}
+          </div>
+          <div className="mt-2 grid grid-cols-2 gap-2">
+            <Button variant="ghost" onClick={handleAddToCart} className="w-full">
               Sepete ekle
             </Button>
-            <Button variant="dark" onClick={handleBuyNow}>
-              Satin al
+            <Button variant="dark" onClick={handleBuyNow} className="w-full">
+              Satın al
             </Button>
           </div>
         </div>

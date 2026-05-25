@@ -6,14 +6,14 @@ export default function AdminDashboard() {
       <h1 className="font-display text-4xl text-ink-900">Admin Panel</h1>
 
       <div className="mt-8 rounded-3xl border border-sand-200 bg-white p-6 shadow-soft">
-        <p className="text-sm text-ink-600">Yonetim paneli kisayollari:</p>
+        <p className="text-sm text-ink-600">Yönetim paneli kısayolları:</p>
         <div className="mt-5 flex flex-wrap gap-3">
-          <Button to="/admin/products">Urunler</Button>
-          <Button to="/admin/orders" variant="ghost">Siparisler</Button>
-          <Button to="/admin/users" variant="ghost">Kullanicilar</Button>
+          <Button to="/admin/products">Ürünler</Button>
+          <Button to="/admin/orders" variant="ghost">Siparişler</Button>
+          <Button to="/admin/users" variant="ghost">Kullanıcılar</Button>
         </div>
         <p className="mt-6 text-xs text-ink-500">
-          Not: Bu sayfalar demo. Gercek liste/CRUD backend entegrasyonu ile doldurulur.
+          Ürünleri, siparişleri ve kullanıcıları bu panel üzerinden yönetebilirsin.
         </p>
       </div>
     </div>

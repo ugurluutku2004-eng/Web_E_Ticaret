@@ -21,8 +21,8 @@ export default function CartPage() {
 
       {!items.length ? (
         <div className="mt-6 rounded-3xl border border-sand-200 bg-white p-6">
-          <p className="text-sm text-ink-600">Sepetin bos. Urunlere goz atmak ister misin?</p>
-          <Button to="/products" className="mt-4">Urunlere git</Button>
+          <p className="text-sm text-ink-600">Sepetin boş. Ürünlere göz atmak ister misin?</p>
+          <Button to="/products" className="mt-4">Ürünlere git</Button>
         </div>
       ) : (
         <div className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
@@ -40,7 +40,7 @@ export default function CartPage() {
                       className="mt-2 inline-block text-sm text-brand-600 hover:text-brand-700"
                       to={`/products/${item.productId}`}
                     >
-                      Urun detayina git
+                      Ürün detayına git
                     </Link>
                   </div>
 
@@ -69,7 +69,7 @@ export default function CartPage() {
 
                   <div className="flex items-center gap-2">
                     <Button variant="ghost" onClick={() => dispatch(removeItem(item.productId))}>
-                      Kaldir
+                      Kaldır
                     </Button>
                   </div>
                 </div>
@@ -85,12 +85,12 @@ export default function CartPage() {
           </div>
 
           <aside className="rounded-3xl border border-sand-200 bg-white p-6 h-fit">
-            <p className="text-xs uppercase tracking-widest text-ink-400">Ozet</p>
+            <p className="text-xs uppercase tracking-widest text-ink-400">Özet</p>
             <div className="mt-4 flex items-center justify-between">
               <p className="text-sm text-ink-600">Toplam</p>
               <p className="text-2xl font-semibold text-ink-900">{formatPrice(total)}</p>
             </div>
-            <Button to="/checkout" className="mt-6 w-full">Odeme adimina git</Button>
+            <Button to="/checkout" className="mt-6 w-full">Ödeme adımına git</Button>
             <Button
               variant="ghost"
               className="mt-3 w-full"

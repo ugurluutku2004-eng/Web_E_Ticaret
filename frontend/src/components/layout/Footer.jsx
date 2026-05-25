@@ -7,17 +7,17 @@ export default function Footer() {
         <div>
           <p className="font-display text-2xl text-ink-900">U-Ticaret</p>
           <p className="mt-2 text-sm text-ink-500">
-            Sepetini doldur, keyfini sur. Turuncu enerjisiyle alisveris deneyimi.
+            Sepetini doldur, keyfini sür. Turuncu enerjisiyle alışveriş deneyimi.
           </p>
         </div>
         <div className="text-sm text-ink-600">
-          <p className="mb-2 font-semibold text-ink-900">Hizli Linkler</p>
+          <p className="mb-2 font-semibold text-ink-900">Hızlı Linkler</p>
           <ul className="space-y-1">
             <li>
-              <Link className="hover:text-brand-600" to="/about">Hakkimizda</Link>
+              <Link className="hover:text-brand-600" to="/about">Hakkımızda</Link>
             </li>
             <li>
-              <Link className="hover:text-brand-600" to="/help">Yardim Merkezi</Link>
+              <Link className="hover:text-brand-600" to="/help">Yardım Merkezi</Link>
             </li>
             <li>
               <Link className="hover:text-brand-600" to="/privacy">KVKK & Gizlilik</Link>
@@ -25,7 +25,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className="text-sm text-ink-600">
-          <p className="mb-2 font-semibold text-ink-900">Iletisim</p>
+          <p className="mb-2 font-semibold text-ink-900">İletişim</p>
           <ul className="space-y-1">
             <li>
               <a className="hover:text-brand-600" href="mailto:ugurluutku2004@gmail.com">
@@ -37,12 +37,12 @@ export default function Footer() {
                 +90 546 473 28 43
               </a>
             </li>
-            <li>Istanbul, TR</li>
+            <li>İstanbul, TR</li>
           </ul>
         </div>
       </div>
       <div className="border-t border-sand-100 py-4 text-center text-xs text-ink-500">
-        2026 U-Ticaret. Tum haklari saklidir.
+        2026 U-Ticaret. Tüm hakları saklıdır.
       </div>
     </footer>
   );

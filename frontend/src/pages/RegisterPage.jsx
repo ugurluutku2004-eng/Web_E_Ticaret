@@ -21,10 +21,10 @@ export default function RegisterPage() {
     try {
       const response = await api.post('/auth/register', { name, email, password });
       dispatch(setAuth({ user: response.data.data, token: response.data.token }));
-      toast.success('Kayit basarili');
+      toast.success('Kayıt başarılı');
       navigate('/account', { replace: true });
     } catch (error) {
-      const message = error?.response?.data?.message || 'Kayit basarisiz';
+      const message = error?.response?.data?.message || 'Kayıt başarısız';
       toast.error(message);
     } finally {
       setLoading(false);
@@ -33,10 +33,10 @@ export default function RegisterPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
-      <h1 className="font-display text-4xl text-ink-900">Kayit Ol</h1>
+      <h1 className="font-display text-4xl text-ink-900">Kayıt Ol</h1>
 
       <div className="mt-8 max-w-xl rounded-3xl border border-sand-200 bg-white p-6 shadow-soft">
-        <p className="text-sm text-ink-600">Hizli kayit ile U-Ticaret hesabini olustur.</p>
+        <p className="text-sm text-ink-600">Hızlı kayıt ile U-Ticaret hesabını oluştur.</p>
 
         <form className="mt-6 space-y-4" onSubmit={onSubmit}>
           <div>
@@ -61,12 +61,12 @@ export default function RegisterPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="mt-2 w-full rounded-2xl border border-sand-200 px-4 py-3 text-sm text-ink-900 focus:outline-none"
-              placeholder="ornek@mail.com"
+              placeholder="örnek@mail.com"
             />
           </div>
 
           <div>
-            <label className="text-sm text-ink-700" htmlFor="password">Sifre</label>
+            <label className="text-sm text-ink-700" htmlFor="password">Şifre</label>
             <input
               id="password"
               type="password"
@@ -81,16 +81,16 @@ export default function RegisterPage() {
 
           <div className="flex flex-wrap items-center gap-3">
             <Button disabled={loading} type="submit">
-              {loading ? 'Kayit yapiliyor…' : 'Kayit ol'}
+              {loading ? 'Kayıt yapılıyor…' : 'Kayıt ol'}
             </Button>
-            <Button to="/login" variant="ghost">Giris yap</Button>
+            <Button to="/login" variant="ghost">Giriş yap</Button>
           </div>
         </form>
 
         <p className="mt-6 text-sm text-ink-600">
-          Zaten hesabin var mi?{' '}
+          Zaten hesabın var mı?{' '}
           <Link className="text-brand-600 hover:text-brand-700" to="/login">
-            Giris yap
+            Giriş yap
           </Link>
         </p>
       </div>

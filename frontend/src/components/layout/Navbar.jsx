@@ -1,8 +1,9 @@
 import { ShoppingCart, Search, User } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const categories = ['Elektronik', 'Telefonlar', 'Giyim', 'Ev & Yasam', 'Spor', 'Kozmetik'];
+const categories = ['Elektronik', 'Telefonlar', 'Giyim', 'Ev & Yaşam', 'Spor', 'Kozmetik'];
 
 const slugify = (value) =>
   value
@@ -13,6 +14,7 @@ const slugify = (value) =>
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { token, user } = useSelector((state) => state.auth);
 
   const urlQuery = useMemo(() => {
     if (location.pathname !== '/products') return '';
@@ -21,6 +23,9 @@ export default function Navbar() {
   }, [location.pathname, location.search]);
 
   const [query, setQuery] = useState(urlQuery);
+
+  // Hesap sayfalarında navbar altındaki kategori çubuğu gizlenir.
+  const hideCategoryNav = location.pathname.startsWith('/account');
 
   useEffect(() => {
     if (location.pathname === '/products') {
@@ -41,7 +46,7 @@ export default function Navbar() {
           <div className="h-10 w-10 rounded-2xl bg-brand-500" />
           <div>
             <p className="font-display text-2xl text-ink-900">U-Ticaret</p>
-            <p className="text-xs text-ink-500">Sepetini doldur, keyfini sur.</p>
+            <p className="text-xs text-ink-500">Sepetini doldur, keyfini sür.</p>
           </div>
         </Link>
 
@@ -56,7 +61,7 @@ export default function Navbar() {
           <Search className="h-4 w-4 text-ink-500" />
           <input
             className="w-full bg-transparent text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none"
-            placeholder="Urun, marka veya kategori ara"
+            placeholder="Ürün, marka veya kategori ara"
             value={query}
             onChange={(event) => {
               const nextQuery = event.target.value;
@@ -69,13 +74,23 @@ export default function Navbar() {
         </form>
 
         <div className="flex items-center gap-3">
-          <Link
-            to="/account"
-            className="flex items-center gap-2 rounded-full border border-sand-200 px-3 py-2 text-sm text-ink-700"
-          >
-            <User className="h-4 w-4" />
-            Hesabim
-          </Link>
+          {token ? (
+            <Link
+              to="/account"
+              className="flex items-center gap-2 rounded-full border border-sand-200 px-3 py-2 text-sm text-ink-700 hover:border-brand-400 hover:text-brand-600"
+            >
+              <User className="h-4 w-4" />
+              Merhaba, {user?.name?.split(' ')[0] ?? 'Hesabım'}
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="flex items-center gap-2 rounded-full border border-sand-200 px-3 py-2 text-sm text-ink-700 hover:border-brand-400 hover:text-brand-600"
+            >
+              <User className="h-4 w-4" />
+              Giriş yap
+            </Link>
+          )}
           <Link
             to="/cart"
             className="flex items-center gap-2 rounded-full bg-ink-900 px-3 py-2 text-sm text-white"
@@ -86,19 +101,21 @@ export default function Navbar() {
         </div>
       </div>
 
-      <nav className="border-t border-sand-100 bg-white">
-        <div className="mx-auto flex max-w-6xl gap-6 overflow-x-auto px-4 py-3 text-sm text-ink-600">
-          {categories.map((item) => (
-            <Link
-              key={item}
-              to={`/category/${slugify(item)}`}
-              className="whitespace-nowrap hover:text-brand-500"
-            >
-              {item}
-            </Link>
-          ))}
-        </div>
-      </nav>
+      {hideCategoryNav ? null : (
+        <nav className="border-t border-sand-100 bg-white">
+          <div className="mx-auto flex max-w-6xl gap-6 overflow-x-auto px-4 py-3 text-sm text-ink-600">
+            {categories.map((item) => (
+              <Link
+                key={item}
+                to={`/category/${slugify(item)}`}
+                className="whitespace-nowrap hover:text-brand-500"
+              >
+                {item}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      )}
     </header>
   );
 }

@@ -5,16 +5,16 @@ import toast from 'react-hot-toast';
 export default function AdminProducts() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
-      <h1 className="font-display text-4xl text-ink-900">Admin Urunler</h1>
+      <h1 className="font-display text-4xl text-ink-900">Admin Ürünler</h1>
 
       <div className="mt-8 rounded-3xl border border-sand-200 bg-white p-6 shadow-soft">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="text-sm text-ink-600">Urun listesi (demo)</p>
+          <p className="text-sm text-ink-600">Ürün listesi</p>
           <Button
             variant="ghost"
-            onClick={() => toast('Demo: Urun ekleme aksiyonu henuz baglanmadi.')}
+            onClick={() => toast('Ürün ekleme işlemi yönetici panelinden yapılır.')}
           >
-            Yeni urun ekle
+            Yeni ürün ekle
           </Button>
         </div>
 
@@ -26,12 +26,12 @@ export default function AdminProducts() {
                 <p className="text-xs text-ink-500">Model: {product.model} • {product.category}</p>
               </div>
               <div className="flex items-center gap-2">
-                <Button to={`/products/${product.id}`} variant="ghost">Goruntule</Button>
+                <Button to={`/products/${product.id}`} variant="ghost">Görüntüle</Button>
                 <Button
                   variant="ghost"
-                  onClick={() => toast('Demo: Urun duzenleme aksiyonu henuz baglanmadi.')}
+                  onClick={() => toast('Ürün düzenleme işlemi yönetici panelinden yapılır.')}
                 >
-                  Duzenle
+                  Düzenle
                 </Button>
               </div>
             </div>

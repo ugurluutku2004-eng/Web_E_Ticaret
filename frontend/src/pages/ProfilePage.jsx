@@ -20,7 +20,7 @@ export default function ProfilePage() {
         const response = await api.get('/auth/me');
         dispatch(setAuth({ user: response.data.data, token }));
       } catch (error) {
-        toast.error('Oturum dogrulanamadi, tekrar giris yapin');
+        toast.error('Oturum doğrulanamadı, tekrar giriş yap');
         dispatch(logout());
       } finally {
         setLoading(false);
@@ -32,7 +32,7 @@ export default function ProfilePage() {
 
   const onLogout = () => {
     dispatch(logout());
-    toast.success('Cikis yapildi');
+    toast.success('Çıkış yapıldı');
   };
 
   return (
@@ -41,7 +41,7 @@ export default function ProfilePage() {
 
       <div className="mt-8 max-w-2xl rounded-3xl border border-sand-200 bg-white p-6 shadow-soft">
         {loading ? (
-          <p className="text-sm text-ink-600">Profil yukleniyor…</p>
+          <p className="text-sm text-ink-600">Profil yükleniyor…</p>
         ) : (
           <>
             <p className="text-sm text-ink-600">Hesap bilgileriniz:</p>
@@ -64,20 +64,20 @@ export default function ProfilePage() {
 
         <div className="mt-6 flex flex-wrap gap-3">
           <Button to="/account" variant="ghost">Hesap merkezi</Button>
-          <Button to="/orders" variant="ghost">Siparislerim</Button>
-          <Button onClick={onLogout} variant="dark">Cikis yap</Button>
+          <Button to="/account/orders" variant="ghost">Siparişlerim</Button>
+          <Button onClick={onLogout} variant="dark">Çıkış yap</Button>
         </div>
 
         <p className="mt-6 text-sm text-ink-600">
-          Giris yapmadiysan{' '}
+          Giriş yapmadıysan{' '}
           <Link className="text-brand-600 hover:text-brand-700" to="/login">
-            Giris
+            Giriş
           </Link>{' '}
           veya{' '}
           <Link className="text-brand-600 hover:text-brand-700" to="/register">
-            Kayit
+            Kayıt
           </Link>{' '}
-          sayfasini kullanabilirsin.
+          sayfasını kullanabilirsin.
         </p>
       </div>
     </div>

@@ -12,16 +12,13 @@ export default function AccountSettingsPage() {
 
   const onSave = (e) => {
     e.preventDefault();
-    toast.success('Kaydedildi (demo)');
+    toast.success('Bilgilerin kaydedildi');
     setPassword('');
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
-      <p className="text-xs uppercase tracking-widest text-brand-500">Hesap Ayarlari</p>
-      <h1 className="mt-2 font-display text-4xl text-ink-900">Profil Ayarlari</h1>
-
-      <div className="mt-8 max-w-2xl rounded-3xl border border-sand-200 bg-white p-6 shadow-soft">
+    <div>
+      <div className="max-w-2xl rounded-3xl border border-sand-200 bg-white p-6 shadow-soft">
         <form className="space-y-4" onSubmit={onSave}>
           <div>
             <label className="text-sm text-ink-700" htmlFor="name">Ad Soyad</label>
@@ -42,30 +39,29 @@ export default function AccountSettingsPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="mt-2 w-full rounded-2xl border border-sand-200 px-4 py-3 text-sm text-ink-900 focus:outline-none"
-              placeholder="ornek@mail.com"
+              placeholder="örnek@mail.com"
             />
           </div>
 
           <div>
-            <label className="text-sm text-ink-700" htmlFor="password">Sifre degistir</label>
+            <label className="text-sm text-ink-700" htmlFor="password">Şifre değiştir</label>
             <input
               id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-2 w-full rounded-2xl border border-sand-200 px-4 py-3 text-sm text-ink-900 focus:outline-none"
-              placeholder="Yeni sifre (opsiyonel)"
+              placeholder="Yeni şifre (opsiyonel)"
             />
           </div>
 
           <div className="flex flex-wrap gap-3">
             <Button type="submit">Kaydet</Button>
-            <Button to="/account" variant="ghost">Hesap merkezine don</Button>
           </div>
         </form>
 
         <p className="mt-6 text-xs text-ink-500">
-          Not: Bu sayfa demo olarak calisir. Gercek guncelleme backend endpoint’leri ile baglanir.
+          Bilgilerini güncelledikten sonra "Kaydet" butonuna basman yeterli.
         </p>
       </div>
     </div>

@@ -23,10 +23,10 @@ export default function LoginPage() {
     try {
       const response = await api.post('/auth/login', { email, password });
       dispatch(setAuth({ user: response.data.data, token: response.data.token }));
-      toast.success('Giris basarili');
+      toast.success('Giriş başarılı');
       navigate(redirectTo, { replace: true });
     } catch (error) {
-      const message = error?.response?.data?.message || 'Giris basarisiz';
+      const message = error?.response?.data?.message || 'Giriş başarısız';
       toast.error(message);
     } finally {
       setLoading(false);
@@ -35,10 +35,10 @@ export default function LoginPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
-      <h1 className="font-display text-4xl text-ink-900">Giris</h1>
+      <h1 className="font-display text-4xl text-ink-900">Giriş</h1>
 
       <div className="mt-8 max-w-xl rounded-3xl border border-sand-200 bg-white p-6 shadow-soft">
-        <p className="text-sm text-ink-600">Hesabina giris yap ve sepet/odeme islemlerine devam et.</p>
+        <p className="text-sm text-ink-600">Hesabına giriş yap ve sepet/ödeme işlemlerine devam et.</p>
 
         <form className="mt-6 space-y-4" onSubmit={onSubmit}>
           <div>
@@ -50,12 +50,12 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="mt-2 w-full rounded-2xl border border-sand-200 px-4 py-3 text-sm text-ink-900 focus:outline-none"
-              placeholder="ornek@mail.com"
+              placeholder="örnek@mail.com"
             />
           </div>
 
           <div>
-            <label className="text-sm text-ink-700" htmlFor="password">Sifre</label>
+            <label className="text-sm text-ink-700" htmlFor="password">Şifre</label>
             <input
               id="password"
               type="password"
@@ -69,16 +69,16 @@ export default function LoginPage() {
 
           <div className="flex flex-wrap items-center gap-3">
             <Button disabled={loading} type="submit">
-              {loading ? 'Giris yapiliyor…' : 'Giris yap'}
+              {loading ? 'Giriş yapılıyor…' : 'Giriş yap'}
             </Button>
-            <Button to="/products" variant="ghost">Urunlere devam et</Button>
+            <Button to="/products" variant="ghost">Ürünlere devam et</Button>
           </div>
         </form>
 
         <p className="mt-6 text-sm text-ink-600">
-          Hesabin yok mu?{' '}
+          Hesabın yok mu?{' '}
           <Link className="text-brand-600 hover:text-brand-700" to="/register">
-            Kayit ol
+            Kayıt ol
           </Link>
         </p>
       </div>

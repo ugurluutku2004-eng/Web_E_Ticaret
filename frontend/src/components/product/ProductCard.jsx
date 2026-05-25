@@ -62,6 +62,15 @@ export default function ProductCard({ product }) {
       className="flex h-full flex-col rounded-2xl border border-sand-200 bg-white p-3 shadow-card transition hover:-translate-y-1 hover:shadow-soft sm:rounded-3xl sm:p-4"
     >
       <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-sand-100 sm:rounded-2xl">
+        <img
+          src={product.image}
+          alt={product.name}
+          loading="lazy"
+          className="h-full w-full object-cover transition duration-300 hover:scale-105"
+          onError={(event) => {
+            event.currentTarget.style.display = 'none';
+          }}
+        />
         {hasDiscount ? (
           <span className="absolute left-2 top-2 rounded-full bg-brand-500 px-2 py-0.5 text-[11px] font-semibold text-white shadow-sm">
             %{discountPct} indirim

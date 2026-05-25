@@ -59,6 +59,16 @@ export default function ProductDetailPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
+      <div className="mb-8 overflow-hidden rounded-3xl border border-sand-200 bg-sand-100">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="h-64 w-full object-cover sm:h-80"
+          onError={(event) => {
+            event.currentTarget.style.display = 'none';
+          }}
+        />
+      </div>
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs uppercase tracking-widest text-brand-500">

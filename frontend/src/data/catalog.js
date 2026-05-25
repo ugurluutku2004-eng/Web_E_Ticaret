@@ -23,7 +23,7 @@ const makeReview = (name, rating, comment, date) => ({
   date,
 });
 
-export const products = [
+const productList = [
   {
     id: 'aurora-kulaklik',
     name: 'Aurora Kulaklık',
@@ -641,6 +641,12 @@ export const products = [
     ],
   },
 ];
+
+// Her ürünün görseli id'sine göre /public/products/<id>.jpg altından gelir.
+export const products = productList.map((product) => ({
+  ...product,
+  image: `/products/${product.id}.jpg`,
+}));
 
 export const campaignProducts = products.filter((product) => product.oldPrice);
 

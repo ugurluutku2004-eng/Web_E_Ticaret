@@ -87,7 +87,7 @@ export default function HomePage() {
           <p className="text-xs uppercase tracking-widest text-white/80">Hafta sonu kampanyası</p>
           <h3 className="mt-3 text-3xl font-semibold">Teknoloji paketlerinde ekstra indirim</h3>
           <p className="mt-2 text-sm text-white/80">Sınırlı süre için</p>
-          <Button to="/products" className="mt-6 bg-white text-brand-600 hover:bg-white/90">İncele</Button>
+          <Button to="/products" className="mt-6 bg-white text-black hover:bg-white/90">İncele</Button>
         </div>
         <div className="rounded-3xl border border-sand-200 bg-white p-8">
           <p className="text-xs uppercase tracking-widest text-brand-500">Yeni gelenler</p>

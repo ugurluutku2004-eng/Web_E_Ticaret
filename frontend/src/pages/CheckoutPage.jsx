@@ -111,7 +111,7 @@ export default function CheckoutPage() {
                   value={couponInput}
                   onChange={(event) => setCouponInput(event.target.value)}
                   className="w-full rounded-2xl border border-sand-200 px-4 py-2 text-sm uppercase text-ink-900 placeholder:normal-case placeholder:text-ink-400 focus:outline-none"
-                  placeholder="Örn: JEYKA100"
+                  placeholder="Geçerli Kupon Kodunu Gir"
                 />
                 <Button type="submit" variant="ghost">Uygula</Button>
               </form>

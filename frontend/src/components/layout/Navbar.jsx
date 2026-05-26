@@ -1,4 +1,4 @@
-import { ShoppingCart, Search, User } from 'lucide-react';
+import { ShoppingCart, Search, User, Shield } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -45,13 +45,13 @@ export default function Navbar() {
         <Link to="/" className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-2xl bg-brand-500" />
           <div>
-            <p className="font-display text-2xl text-ink-900">U-Ticaret</p>
-            <p className="text-xs text-ink-500">Sepetini doldur, keyfini sür.</p>
+            <p className="font-display text-xl text-ink-900 sm:text-2xl">U-Ticaret</p>
+            <p className="hidden text-xs text-ink-500 sm:block">Sepetini doldur, keyfini sür.</p>
           </div>
         </Link>
 
         <form
-          className="flex w-full flex-1 items-center gap-2 rounded-full border border-sand-200 bg-white px-4 py-2 shadow-soft md:w-auto md:max-w-md"
+          className="order-last flex w-full flex-1 items-center gap-2 rounded-full border border-sand-200 bg-white px-4 py-2 shadow-soft md:order-none md:w-auto md:max-w-md"
           role="search"
           onSubmit={(event) => {
             event.preventDefault();
@@ -73,14 +73,23 @@ export default function Navbar() {
           />
         </form>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          {token && user?.role === 'admin' && (
+            <Link
+              to="/admin"
+              className="flex items-center gap-2 rounded-full border border-brand-400 bg-brand-50 px-3 py-2 text-sm font-semibold text-brand-600 hover:bg-brand-100"
+            >
+              <Shield className="h-4 w-4" />
+              <span className="hidden sm:inline">Admin</span>
+            </Link>
+          )}
           {token ? (
             <Link
               to="/account"
               className="flex items-center gap-2 rounded-full border border-sand-200 px-3 py-2 text-sm text-ink-700 hover:border-brand-400 hover:text-brand-600"
             >
               <User className="h-4 w-4" />
-              Merhaba, {user?.name?.split(' ')[0] ?? 'Hesabım'}
+              <span className="hidden sm:inline">Merhaba, {user?.name?.split(' ')[0] ?? 'Hesabım'}</span>
             </Link>
           ) : (
             <Link
@@ -88,7 +97,7 @@ export default function Navbar() {
               className="flex items-center gap-2 rounded-full border border-sand-200 px-3 py-2 text-sm text-ink-700 hover:border-brand-400 hover:text-brand-600"
             >
               <User className="h-4 w-4" />
-              Giriş yap
+              <span className="hidden sm:inline">Giriş yap</span>
             </Link>
           )}
           <Link
@@ -96,7 +105,7 @@ export default function Navbar() {
             className="flex items-center gap-2 rounded-full bg-ink-900 px-3 py-2 text-sm text-white"
           >
             <ShoppingCart className="h-4 w-4" />
-            Sepet
+            <span className="hidden sm:inline">Sepet</span>
           </Link>
         </div>
       </div>

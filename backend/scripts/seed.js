@@ -1,7 +1,7 @@
 /**
  * Veritabanı seed script'i.
  * - Belirtilen e-postaya sahip kullanıcıyı admin yapar (yoksa oluşturur).
- * - frontend/src/data/catalog.js içindeki kategorileri ve ürünleri DB'ye yazar.
+ * - scripts/seed-data.json içindeki kategorileri ve ürünleri DB'ye yazar.
  *
  * Çalıştırma (backend/ dizininde):
  *   node scripts/seed.js
@@ -15,7 +15,7 @@
  */
 require('dotenv').config();
 const path = require('path');
-const { pathToFileURL } = require('url');
+const fs = require('fs');
 const mongoose = require('mongoose');
 
 const User = require('../src/models/User');
@@ -52,9 +52,9 @@ async function run() {
     console.log(`Admin oluşturuldu -> e-posta: ${ADMIN_EMAIL}  şifre: ${ADMIN_PASSWORD}`);
   }
 
-  // 2) Katalogu yükle (ESM modül, dinamik import)
-  const catalogPath = path.resolve(__dirname, '../../frontend/src/data/catalog.js');
-  const catalog = await import(pathToFileURL(catalogPath).href);
+  // 2) Katalogu yükle (JSON)
+  const dataPath = path.resolve(__dirname, 'seed-data.json');
+  const catalog = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
   const categories = catalog.categories || [];
   const products = catalog.products || [];
 

@@ -1,0 +1,390 @@
+{
+  "categories": [
+    {
+      "name": "Elektronik",
+      "slug": "elektronik"
+    },
+    {
+      "name": "Telefonlar",
+      "slug": "telefonlar"
+    },
+    {
+      "name": "Giyim",
+      "slug": "giyim"
+    },
+    {
+      "name": "Ev & Yaşam",
+      "slug": "ev-and-yasam"
+    },
+    {
+      "name": "Spor",
+      "slug": "spor"
+    },
+    {
+      "name": "Kozmetik",
+      "slug": "kozmetik"
+    }
+  ],
+  "products": [
+    {
+      "name": "Aurora Kulaklık",
+      "model": "AUR-500",
+      "short": "Yüksek bas, net ses.",
+      "description": "Gün boyu konfor sunan yastıklı tasarım, dengeli bas ve net vokaller ile müzik keyfini yükseltir. Bluetooth bağlantısı ve katlanabilir yapı ile yanında taşıması kolaydır.",
+      "price": 1299,
+      "oldPrice": 1699,
+      "image": "/products/aurora-kulaklik.jpg",
+      "categorySlug": "elektronik"
+    },
+    {
+      "name": "Nova Akıllı Saat",
+      "model": "NOVA-S2",
+      "short": "Güncel sağlık takibi.",
+      "description": "Adım, uyku ve nabız takibi. Bildirimler, suya dayanıklı gövde ve 7 güne kadar pil ömrü ile her gün kullanıma uygun.",
+      "price": 1999,
+      "oldPrice": 0,
+      "image": "/products/nova-akilli-saat.jpg",
+      "categorySlug": "telefonlar"
+    },
+    {
+      "name": "Zenith Akıllı Telefon",
+      "model": "ZN-12",
+      "short": "Akıcı ekran, güçlü kamera.",
+      "description": "120Hz ekran, gelişmiş gece modu ve hızlı şarj desteği. Günlük kullanım için dengeli performans sunar.",
+      "price": 24999,
+      "oldPrice": 29999,
+      "image": "/products/zenith-akilli-telefon.jpg",
+      "categorySlug": "telefonlar"
+    },
+    {
+      "name": "ClearCase Şeffaf Kılıf",
+      "model": "CC-TP",
+      "short": "Darbelere karşı günlük koruma.",
+      "description": "Sararmaya karşı daha dayanıklı malzeme. İnce yapısı sayesinde elde kalınlık hissi vermez.",
+      "price": 249,
+      "oldPrice": 0,
+      "image": "/products/clearcase-kilif.jpg",
+      "categorySlug": "telefonlar"
+    },
+    {
+      "name": "Pulse Powerbank",
+      "model": "PULSE-10K",
+      "short": "Hızlı şarj, ince tasarım.",
+      "description": "10.000 mAh kapasite, iki çıkış ve hızlı şarj desteği. İnce gövde ile çantada yer kaplamaz.",
+      "price": 749,
+      "oldPrice": 0,
+      "image": "/products/pulse-powerbank.jpg",
+      "categorySlug": "elektronik"
+    },
+    {
+      "name": "Echo Bluetooth Hoparlör",
+      "model": "ECHO-BS",
+      "short": "Kompakt, yüksek ses.",
+      "description": "Küçük boyutuna rağmen güçlü çıkış. Piknik, sahil ve ev kullanımı için ideal. Tek şarjla uzun süre çalışır.",
+      "price": 999,
+      "oldPrice": 0,
+      "image": "/products/echo-bluetooth-hoparlor.jpg",
+      "categorySlug": "elektronik"
+    },
+    {
+      "name": "Flex USB-C Kablo",
+      "model": "FLX-C1M",
+      "short": "Dayanıklı örgü tasarım.",
+      "description": "Örgülü dış kaplama ve güçlendirilmiş başlık. Hızlı şarj ve veri aktarımı için uygundur.",
+      "price": 149,
+      "oldPrice": 0,
+      "image": "/products/flex-usb-c-kablo.jpg",
+      "categorySlug": "elektronik"
+    },
+    {
+      "name": "Savana Sırt Çanta",
+      "model": "SVN-21L",
+      "short": "Her mevsime uygun.",
+      "description": "Su itici dış yüzey, rahat omuz askıları ve 21L hacim. Günlük kullanımdan kısa seyahatlere kadar ideal.",
+      "price": 799,
+      "oldPrice": 0,
+      "image": "/products/savana-sirt-canta.jpg",
+      "categorySlug": "spor"
+    },
+    {
+      "name": "Aqua Matara",
+      "model": "AQUA-750",
+      "short": "Sızdırmaz kapak, hafif.",
+      "description": "750ml kapasite ve kolay taşıma kulpu. Günlük spor ve ofis kullanımına uygundur.",
+      "price": 229,
+      "oldPrice": 0,
+      "image": "/products/aqua-matara.jpg",
+      "categorySlug": "spor"
+    },
+    {
+      "name": "Yoga Mat",
+      "model": "YGM-6MM",
+      "short": "Kaymaz yüzey, 6mm konfor.",
+      "description": "Kaymaz dokusu ve 6mm kalınlık ile eklem dostu. Evde ve salonda antrenman için uygundur.",
+      "price": 599,
+      "oldPrice": 0,
+      "image": "/products/yoga-mat.jpg",
+      "categorySlug": "spor"
+    },
+    {
+      "name": "Linea Kahve Seti",
+      "model": "LN-6PCS",
+      "short": "Minimal mutfak stili.",
+      "description": "6 parça kahve seti, günlük kullanıma uygun dayanıklı seramik. Minimal tasarım ile sofraya uyum sağlar.",
+      "price": 549,
+      "oldPrice": 0,
+      "image": "/products/linea-kahve-seti.jpg",
+      "categorySlug": "ev-and-yasam"
+    },
+    {
+      "name": "Luna Masa Lambası",
+      "model": "LUNA-LED",
+      "short": "Sıcak ışık, modern tasarım.",
+      "description": "Sıcak beyaz ışık ve dokunmatik aç/kapa. Çalışma masası ve komodin için ideal.",
+      "price": 899,
+      "oldPrice": 0,
+      "image": "/products/luna-masa-lambasi.jpg",
+      "categorySlug": "ev-and-yasam"
+    },
+    {
+      "name": "Orderly Çekmece Düzenleyici",
+      "model": "ORD-SET",
+      "short": "Modüler parçalar, pratik.",
+      "description": "Modüler parçalar ile çekmeceleri kolayca düzenler. Mutfak, banyo ve dolap için uygundur.",
+      "price": 379,
+      "oldPrice": 0,
+      "image": "/products/orderly-cekmece-duzenleyici.jpg",
+      "categorySlug": "ev-and-yasam"
+    },
+    {
+      "name": "Urban Tişört",
+      "model": "URB-TEE",
+      "short": "Rahat kesim, yumuşak doku.",
+      "description": "Gün boyu rahatlık sunan pamuklu kumaş. Minimal logo detayı ve rahat kesim.",
+      "price": 349,
+      "oldPrice": 0,
+      "image": "/products/urban-tisort.jpg",
+      "categorySlug": "giyim"
+    },
+    {
+      "name": "Coast Şort",
+      "model": "CST-SRT",
+      "short": "Yaza uygun, hafif kumaş.",
+      "description": "Hafif ve nefes alan kumaş. Rahat bel yapısı ile gün boyu konfor.",
+      "price": 399,
+      "oldPrice": 0,
+      "image": "/products/coast-sort.jpg",
+      "categorySlug": "giyim"
+    },
+    {
+      "name": "Breeze Hoodie",
+      "model": "BRZ-HDD",
+      "short": "Serin akşamlara uygun.",
+      "description": "Yumuşak dokulu hoodie. Minimal detaylar ve rahat kalıp ile kombinlemesi kolay.",
+      "price": 899,
+      "oldPrice": 0,
+      "image": "/products/breeze-hoodie.jpg",
+      "categorySlug": "giyim"
+    },
+    {
+      "name": "Sunny Güneş Kremi SPF50+",
+      "model": "SUN-SPF50",
+      "short": "Hafif doku, iz bırakmaz.",
+      "description": "Yüksek koruma SPF50+ ile günlük kullanım için uygun. Hafif yapısı sayesinde ciltte ağırlık yapmaz.",
+      "price": 429,
+      "oldPrice": 549,
+      "image": "/products/sunny-gunes-kremi.jpg",
+      "categorySlug": "kozmetik"
+    },
+    {
+      "name": "Pure Hyaluron Serum",
+      "model": "PH-30",
+      "short": "Nem takviyesi, hafif serum.",
+      "description": "Günlük nem takviyesi için uygun hafif yapılı serum. Cildi dolgun görünüme destekler.",
+      "price": 599,
+      "oldPrice": 0,
+      "image": "/products/pure-hyaluron-serum.jpg",
+      "categorySlug": "kozmetik"
+    },
+    {
+      "name": "Silk Dudak Balsamı",
+      "model": "SLK-LIP",
+      "short": "Gün boyu nemlendirme.",
+      "description": "Kuruluğa karşı destek, gün içinde tazelemeye uygun yapı. Hafif parlak bitiş verir.",
+      "price": 179,
+      "oldPrice": 0,
+      "image": "/products/silk-dudak-balsami.jpg",
+      "categorySlug": "kozmetik"
+    },
+    {
+      "name": "Vega Kablosuz Mouse",
+      "model": "VG-M1",
+      "short": "Sessiz tıklama, ergonomik.",
+      "description": "Ergonomik kavrama ve sessiz tuşlar. 2.4GHz alıcı ile gecikmesiz bağlantı, uzun pil ömrü ile gün boyu rahat kullanım sunar.",
+      "price": 349,
+      "oldPrice": 0,
+      "image": "/products/vega-kablosuz-mouse.jpg",
+      "categorySlug": "elektronik"
+    },
+    {
+      "name": "Orbit Mekanik Klavye",
+      "model": "ORB-K87",
+      "short": "Tuşe hissi yüksek, RGB.",
+      "description": "Mekanik anahtarlar ile net tuşe hissi ve RGB aydınlatma. Kompakt yerleşim sayesinde masada az yer kaplar.",
+      "price": 1149,
+      "oldPrice": 0,
+      "image": "/products/orbit-mekanik-klavye.jpg",
+      "categorySlug": "elektronik"
+    },
+    {
+      "name": "Titan Akıllı Telefon",
+      "model": "TTN-7",
+      "short": "Geniş ekran, güçlü pil.",
+      "description": "6.7 inç ekran, çok çekirdekli işlemci ve büyük pil. Gün boyu kullanımda akıcı performans ve hızlı şarj desteği sunar.",
+      "price": 18999,
+      "oldPrice": 0,
+      "image": "/products/titan-akilli-telefon.jpg",
+      "categorySlug": "telefonlar"
+    },
+    {
+      "name": "Beam Hızlı Şarj Adaptörü",
+      "model": "BM-65W",
+      "short": "65W hızlı şarj, kompakt.",
+      "description": "65W çıkış ile telefon ve dizüstü cihazları hızlıca şarj eder. İki çıkışlı yapısı sayesinde aynı anda iki cihaz desteklenir.",
+      "price": 599,
+      "oldPrice": 0,
+      "image": "/products/beam-hizli-sarj-adaptoru.jpg",
+      "categorySlug": "telefonlar"
+    },
+    {
+      "name": "Guard Ekran Koruyucu",
+      "model": "GRD-9H",
+      "short": "9H sertlik, çizilmez.",
+      "description": "9H sertlikte temperli cam ile çizilmelere karşı koruma. Hassas dokunmatik uyumu ve kolay kurulum kiti içerir.",
+      "price": 129,
+      "oldPrice": 0,
+      "image": "/products/guard-ekran-koruyucu.jpg",
+      "categorySlug": "telefonlar"
+    },
+    {
+      "name": "Classic Gömlek",
+      "model": "CLS-SHIRT",
+      "short": "Şık kesim, pamuklu.",
+      "description": "Günlük ve resmi kombinlere uygun pamuklu gömlek. Ütü gerektirmeyen kumaş yapısı ile gün boyu düzgün durur.",
+      "price": 549,
+      "oldPrice": 0,
+      "image": "/products/classic-gomlek.jpg",
+      "categorySlug": "giyim"
+    },
+    {
+      "name": "Denim Jean",
+      "model": "DNM-SLIM",
+      "short": "Esnek kumaş, slim kesim.",
+      "description": "Esnek denim kumaş ile gün boyu konfor. Slim kesim ve solmayan renk ile her kombine uyum sağlar.",
+      "price": 699,
+      "oldPrice": 0,
+      "image": "/products/denim-jean.jpg",
+      "categorySlug": "giyim"
+    },
+    {
+      "name": "Comfort Eşofman",
+      "model": "CMF-JOG",
+      "short": "Yumuşak, ev ve spor.",
+      "description": "Yumuşak iç dokusu ile ev ve spor kullanımına uygun eşofman. Bel lastiği ve cep detayları ile pratik.",
+      "price": 459,
+      "oldPrice": 0,
+      "image": "/products/comfort-esofman.jpg",
+      "categorySlug": "giyim"
+    },
+    {
+      "name": "Aroma Mum Seti",
+      "model": "ARM-3PCS",
+      "short": "Doğal koku, uzun yanma.",
+      "description": "Doğal soya wax ile hazırlanmış 3 parça mum seti. Hafif aroması ile ortama huzurlu bir atmosfer katar.",
+      "price": 329,
+      "oldPrice": 0,
+      "image": "/products/aroma-mum-seti.jpg",
+      "categorySlug": "ev-and-yasam"
+    },
+    {
+      "name": "Soft Nevresim Takımı",
+      "model": "SFT-NVR",
+      "short": "Pamuklu, çift kişilik.",
+      "description": "Yüksek pamuk oranı ile yumuşak doku. Çift kişilik takım, solmayan renkler ve kolay ütülenir kumaş içerir.",
+      "price": 899,
+      "oldPrice": 0,
+      "image": "/products/soft-nevresim-takimi.jpg",
+      "categorySlug": "ev-and-yasam"
+    },
+    {
+      "name": "Nordic Duvar Saati",
+      "model": "NRD-CLK",
+      "short": "Sessiz mekanizma, minimal.",
+      "description": "Minimal tasarım ve sessiz akar saniye mekanizması. Salon, ofis ve mutfak duvarlarına uyum sağlar.",
+      "price": 379,
+      "oldPrice": 0,
+      "image": "/products/nordic-duvar-saati.jpg",
+      "categorySlug": "ev-and-yasam"
+    },
+    {
+      "name": "Sprint Koşu Ayakkabısı",
+      "model": "SPR-RUN",
+      "short": "Hafif taban, nefes alır.",
+      "description": "Hafif taban ve nefes alan üst yüzey ile uzun koşularda konfor. Esnek yapısı ayağı sarar ve darbeyi azaltır.",
+      "price": 1299,
+      "oldPrice": 0,
+      "image": "/products/sprint-kosu-ayakkabisi.jpg",
+      "categorySlug": "spor"
+    },
+    {
+      "name": "Flex Direnç Bandı Seti",
+      "model": "FLX-BAND",
+      "short": "5 seviye, ev antrenmanı.",
+      "description": "Farklı dirençlerde 5 bant ile ev antrenmanına uygun set. Taşıma çantası ve kullanım kılavuzu içerir.",
+      "price": 299,
+      "oldPrice": 0,
+      "image": "/products/flex-direnc-bandi-seti.jpg",
+      "categorySlug": "spor"
+    },
+    {
+      "name": "Power Dambıl Seti",
+      "model": "PWR-DB10",
+      "short": "Ayarlanabilir, 10 kg.",
+      "description": "Ayarlanabilir ağırlık plakaları ile 10 kg değere kadar set. Kaymaz tutuş ve dayanıklı kaplama ile güvenli kullanım.",
+      "price": 1499,
+      "oldPrice": 0,
+      "image": "/products/power-dambil-seti.jpg",
+      "categorySlug": "spor"
+    },
+    {
+      "name": "Glow Tonik",
+      "model": "GLW-TNC",
+      "short": "Gözenek bakımı, ferah.",
+      "description": "Cildi temizlik sonrası dengeleyen ferahlatıcı tonik. Düzenli kullanımda gözenek görünümüne destek olur.",
+      "price": 259,
+      "oldPrice": 0,
+      "image": "/products/glow-tonik.jpg",
+      "categorySlug": "kozmetik"
+    },
+    {
+      "name": "Velvet Ruj",
+      "model": "VLV-LIP",
+      "short": "Mat bitiş, kalıcı.",
+      "description": "Mat bitiş ve yoğun renk ile gün boyu kalıcılık. Dudakları kurutmayan kadifemsi doku sunar.",
+      "price": 199,
+      "oldPrice": 0,
+      "image": "/products/velvet-ruj.jpg",
+      "categorySlug": "kozmetik"
+    },
+    {
+      "name": "Fresh Parfüm",
+      "model": "FRS-EDP",
+      "short": "Ferah koku, kalıcı.",
+      "description": "Ferah ve hafif notalar ile gün boyu eşlik eden parfüm. Dengeli kalıcılığı sayesinde her mevsime uygundur.",
+      "price": 749,
+      "oldPrice": 0,
+      "image": "/products/fresh-parfum.jpg",
+      "categorySlug": "kozmetik"
+    }
+  ]
+}

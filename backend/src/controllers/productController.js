@@ -38,11 +38,14 @@ const getProductById = asyncHandler(async (req, res) => {
 });
 
 const createProduct = asyncHandler(async (req, res) => {
-  const { name, description, price, stock, images, category } = req.body;
+  const { name, model, short, description, price, oldPrice, stock, images, category } = req.body;
   const product = await Product.create({
     name,
+    model: model || '',
+    short: short || '',
     description,
     price,
+    oldPrice: oldPrice || 0,
     stock,
     images: images || [],
     category,
@@ -57,10 +60,13 @@ const updateProduct = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('Product not found');
   }
-  const { name, description, price, stock, images, category, isActive } = req.body;
+  const { name, model, short, description, price, oldPrice, stock, images, category, isActive } = req.body;
   product.name = name || product.name;
+  product.model = model ?? product.model;
+  product.short = short ?? product.short;
   product.description = description || product.description;
   product.price = price ?? product.price;
+  product.oldPrice = oldPrice ?? product.oldPrice;
   product.stock = stock ?? product.stock;
   product.images = images || product.images;
   product.category = category || product.category;

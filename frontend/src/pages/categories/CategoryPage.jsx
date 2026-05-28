@@ -1,12 +1,31 @@
+import { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
 import ProductCard from '../../components/product/ProductCard';
-import { categories, products } from '../../data/catalog';
+import { fetchProducts, fetchCategories } from '../../features/products/productSlice';
 import { getCategoryIcon } from '../../lib/categoryIcons';
 
 export default function CategoryPage() {
   const { slug } = useParams();
-  const category = categories.find((item) => item.slug === slug);
-  const categoryProducts = products.filter((product) => product.categorySlug === slug);
+  const dispatch = useDispatch();
+  const { items: products, categories, loading } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
+  const category = useMemo(
+    () => categories.find((item) => item.slug === slug),
+    [categories, slug]
+  );
+
+  const categoryProducts = useMemo(
+    () => products.filter((product) => product.category?.slug === slug),
+    [products, slug]
+  );
+
   const title = category?.name ?? slug?.replace(/-/g, ' ');
   const Icon = getCategoryIcon(slug);
 
@@ -20,10 +39,12 @@ export default function CategoryPage() {
         <h1 className="font-display text-4xl text-ink-900">{title}</h1>
       </div>
 
-      {categoryProducts.length ? (
+      {loading && categoryProducts.length === 0 ? (
+        <p className="mt-6 text-sm text-ink-500">Yükleniyor...</p>
+      ) : categoryProducts.length ? (
         <div className="mt-8 grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {categoryProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product._id} product={product} />
           ))}
         </div>
       ) : (

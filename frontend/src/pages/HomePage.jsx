@@ -1,17 +1,36 @@
-import Button from '../components/ui/Button';
+import { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import Button from '../components/ui/Button';
 import ProductCard from '../components/product/ProductCard';
 import SectionHeader from '../components/product/SectionHeader';
-
-import { campaignProducts, categories, products } from '../data/catalog';
+import { fetchProducts, fetchCategories } from '../features/products/productSlice';
 import { getCategoryIcon } from '../lib/categoryIcons';
 
-const getCategoryCountText = (slug) => {
-  const count = products.filter((product) => product.categorySlug === slug).length;
-  return `${count} ürün`;
-};
-
 export default function HomePage() {
+  const dispatch = useDispatch();
+  const { items: products, categories, loading } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
+  const productCountBySlug = useMemo(() => {
+    const map = {};
+    for (const p of products) {
+      const slug = p.category?.slug;
+      if (slug) map[slug] = (map[slug] || 0) + 1;
+    }
+    return map;
+  }, [products]);
+
+  const campaignProducts = useMemo(
+    () => products.filter((p) => p.oldPrice && p.oldPrice > p.price).slice(0, 3),
+    [products]
+  );
+
   return (
     <div className="mx-auto max-w-6xl px-4 pb-16 pt-10">
       <section className="grid gap-8 rounded-[36px] border border-sand-200 bg-white p-8 shadow-soft md:grid-cols-[1.2fr_0.8fr]">
@@ -50,6 +69,7 @@ export default function HomePage() {
         <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
           {categories.map((cat) => {
             const Icon = getCategoryIcon(cat.slug);
+            const count = productCountBySlug[cat.slug] || 0;
             return (
               <Link
                 key={cat.slug}
@@ -61,7 +81,7 @@ export default function HomePage() {
                 </span>
                 <div className="min-w-0">
                   <h3 className="truncate text-base font-semibold text-ink-900 sm:text-lg">{cat.name}</h3>
-                  <p className="text-xs text-ink-500 sm:text-sm">{getCategoryCountText(cat.slug)}</p>
+                  <p className="text-xs text-ink-500 sm:text-sm">{count} ürün</p>
                 </div>
               </Link>
             );
@@ -75,11 +95,17 @@ export default function HomePage() {
           subtitle="Sınırlı süreli indirimli seçkiler"
           action={<Button to="/products" variant="dark">Tüm ürünler</Button>}
         />
-        <div className="mt-6 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
-          {campaignProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {loading && campaignProducts.length === 0 ? (
+          <p className="mt-6 text-sm text-ink-500">Yükleniyor...</p>
+        ) : campaignProducts.length === 0 ? (
+          <p className="mt-6 text-sm text-ink-500">Şu an kampanyalı ürün yok.</p>
+        ) : (
+          <div className="mt-6 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+            {campaignProducts.map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="mt-12 grid gap-6 md:grid-cols-2">

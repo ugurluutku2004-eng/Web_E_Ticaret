@@ -9,7 +9,17 @@ const formatPrice = (value) =>
 const inputClass =
   'w-full rounded-2xl border border-sand-200 px-4 py-2 text-sm text-ink-900 focus:border-brand-400 focus:outline-none';
 
-const emptyForm = { name: '', description: '', price: '', stock: '', category: '' };
+const emptyForm = {
+  name: '',
+  model: '',
+  short: '',
+  description: '',
+  price: '',
+  oldPrice: '',
+  stock: '',
+  image: '',
+  category: '',
+};
 
 const slugify = (text) =>
   text
@@ -71,9 +81,13 @@ export default function AdminProducts() {
   const openEdit = (product) => {
     setForm({
       name: product.name || '',
+      model: product.model || '',
+      short: product.short || '',
       description: product.description || '',
       price: product.price ?? '',
+      oldPrice: product.oldPrice ?? '',
       stock: product.stock ?? '',
+      image: product.images?.[0] || '',
       category: product.category?._id || product.category || '',
     });
     setEditingId(product._id);
@@ -89,9 +103,13 @@ export default function AdminProducts() {
     setSaving(true);
     const payload = {
       name: form.name.trim(),
+      model: form.model.trim(),
+      short: form.short.trim(),
       description: form.description.trim(),
       price: Number(form.price) || 0,
+      oldPrice: Number(form.oldPrice) || 0,
       stock: Number(form.stock) || 0,
+      images: form.image.trim() ? [form.image.trim()] : [],
       category: form.category,
     };
     try {
@@ -219,6 +237,20 @@ export default function AdminProducts() {
             </select>
             <input
               className={inputClass}
+              name="model"
+              placeholder="Model (opsiyonel)"
+              value={form.model}
+              onChange={handleChange}
+            />
+            <input
+              className={inputClass}
+              name="image"
+              placeholder="Görsel yolu (örn: /products/urun.jpg)"
+              value={form.image}
+              onChange={handleChange}
+            />
+            <input
+              className={inputClass}
               name="price"
               type="number"
               min="0"
@@ -228,11 +260,27 @@ export default function AdminProducts() {
             />
             <input
               className={inputClass}
+              name="oldPrice"
+              type="number"
+              min="0"
+              placeholder="Eski fiyat (₺) — indirim için"
+              value={form.oldPrice}
+              onChange={handleChange}
+            />
+            <input
+              className={inputClass}
               name="stock"
               type="number"
               min="0"
               placeholder="Stok"
               value={form.stock}
+              onChange={handleChange}
+            />
+            <input
+              className={inputClass}
+              name="short"
+              placeholder="Kısa açıklama (kart üzerinde)"
+              value={form.short}
               onChange={handleChange}
             />
             <textarea

@@ -18,7 +18,13 @@ export default function ProductCard({ product }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const CategoryIcon = getCategoryIcon(product.categorySlug);
+  const productId = product._id || product.id;
+  const image = product.images?.[0] || product.image;
+  const categoryName = product.category?.name || product.category || '';
+  const categorySlug = product.category?.slug || product.categorySlug || '';
+  const rating = product.avgRating ?? product.rating ?? 0;
+
+  const CategoryIcon = getCategoryIcon(categorySlug);
   const hasDiscount = Boolean(product.oldPrice && product.oldPrice > product.price);
   const discountPct = hasDiscount
     ? Math.round((1 - product.price / product.oldPrice) * 100)
@@ -30,7 +36,7 @@ export default function ProductCard({ product }) {
 
     dispatch(
       addItem({
-        productId: product.id,
+        productId,
         name: product.name,
         model: product.model,
         price: product.price,
@@ -46,7 +52,7 @@ export default function ProductCard({ product }) {
 
     dispatch(
       addItem({
-        productId: product.id,
+        productId,
         name: product.name,
         model: product.model,
         price: product.price,
@@ -58,19 +64,21 @@ export default function ProductCard({ product }) {
 
   return (
     <Link
-      to={`/products/${product.id}`}
+      to={`/products/${productId}`}
       className="flex h-full flex-col rounded-2xl border border-sand-200 bg-white p-3 shadow-card transition hover:-translate-y-1 hover:shadow-soft sm:rounded-3xl sm:p-4"
     >
       <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-sand-100 sm:rounded-2xl">
-        <img
-          src={product.image}
-          alt={product.name}
-          loading="lazy"
-          className="h-full w-full object-cover transition duration-300 hover:scale-105"
-          onError={(event) => {
-            event.currentTarget.style.display = 'none';
-          }}
-        />
+        {image ? (
+          <img
+            src={image}
+            alt={product.name}
+            loading="lazy"
+            className="h-full w-full object-cover transition duration-300 hover:scale-105"
+            onError={(event) => {
+              event.currentTarget.style.display = 'none';
+            }}
+          />
+        ) : null}
         {hasDiscount ? (
           <span className="absolute left-2 top-2 rounded-full bg-brand-500 px-2 py-0.5 text-[11px] font-semibold text-white shadow-sm">
             %{discountPct} indirim
@@ -83,19 +91,23 @@ export default function ProductCard({ product }) {
           <div className="min-w-0">
             <p className="flex items-center gap-1 text-[11px] uppercase tracking-widest text-ink-400">
               <CategoryIcon size={12} className="shrink-0" />
-              <span className="truncate">{product.category}</span>
+              <span className="truncate">{categoryName}</span>
             </p>
             <p className="mt-1 truncate text-base font-semibold text-ink-900 sm:text-lg">
               {product.name}
             </p>
-            <p className="mt-0.5 text-xs text-ink-500">Model: {product.model}</p>
+            {product.model ? (
+              <p className="mt-0.5 text-xs text-ink-500">Model: {product.model}</p>
+            ) : null}
           </div>
           <div className="shrink-0">
-            <StarRating value={product.rating} size={13} />
+            <StarRating value={rating} size={13} />
           </div>
         </div>
 
-        <p className="line-clamp-2 text-sm text-ink-500">{product.short}</p>
+        {product.short ? (
+          <p className="line-clamp-2 text-sm text-ink-500">{product.short}</p>
+        ) : null}
 
         <div className="mt-auto pt-1">
           <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0">

@@ -82,8 +82,11 @@ async function run() {
       { name: product.name },
       {
         name: product.name,
+        model: product.model || '',
+        short: product.short || '',
         description: product.description || product.short || '',
         price: product.price,
+        oldPrice: product.oldPrice || 0,
         stock: DEFAULT_STOCK,
         images: product.image ? [product.image] : [],
         category: categoryId,

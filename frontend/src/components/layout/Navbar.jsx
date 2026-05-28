@@ -43,7 +43,9 @@ export default function Navbar() {
     <header className="bg-white/80 backdrop-blur border-b border-sand-200">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-4">
         <Link to="/" className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-2xl bg-brand-500" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-500 text-xl">
+            ☀️
+          </div>
           <div>
             <p className="font-display text-xl text-ink-900 sm:text-2xl">U-Ticaret</p>
             <p className="hidden text-xs text-ink-500 sm:block">Sepetini doldur, keyfini sür.</p>

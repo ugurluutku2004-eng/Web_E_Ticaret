@@ -40,4 +40,34 @@ const updateOrderStatus = asyncHandler(async (req, res) => {
   res.json({ success: true, data: updated });
 });
 
-module.exports = { createOrder, getMyOrders, getOrderById, listOrders, updateOrderStatus };
+const cancelMyOrder = asyncHandler(async (req, res) => {
+  const order = await Order.findOne({ _id: req.params.id, user: req.user._id });
+  if (!order) {
+    res.status(404);
+    throw new Error('Order not found');
+  }
+  if (order.status === 'delivered') {
+    res.status(400);
+    throw new Error('Delivered orders cannot be cancelled');
+  }
+  if (order.status === 'cancelled') {
+    res.status(400);
+    throw new Error('Order already cancelled');
+  }
+  order.status = 'cancelled';
+  if (order.isPaid) {
+    order.isPaid = false;
+    order.paidAt = undefined;
+  }
+  const updated = await order.save();
+  res.json({ success: true, data: updated });
+});
+
+module.exports = {
+  createOrder,
+  getMyOrders,
+  getOrderById,
+  listOrders,
+  updateOrderStatus,
+  cancelMyOrder,
+};

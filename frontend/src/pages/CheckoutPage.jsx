@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 import Button from '../components/ui/Button';
 import { findCoupon } from '../data/coupons';
+import { api } from '../lib/api';
+import { clearCart } from '../features/cart/cartSlice';
 
 const formatPrice = (value) =>
   new Intl.NumberFormat('tr-TR', {
@@ -14,10 +17,22 @@ const formatPrice = (value) =>
   }).format(value);
 
 export default function CheckoutPage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { items, total } = useSelector((state) => state.cart);
+  const { token, user } = useSelector((state) => state.auth);
 
   const [couponInput, setCouponInput] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [paymentStep, setPaymentStep] = useState(false);
+  const [cardName, setCardName] = useState('');
+  const [holderName, setHolderName] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expMonth, setExpMonth] = useState('');
+  const [expYear, setExpYear] = useState('');
+  const [cvc, setCvc] = useState('');
+  const [saveCard, setSaveCard] = useState(true);
 
   const discount = appliedCoupon ? total * appliedCoupon.rate : 0;
   const payable = total - discount;
@@ -37,6 +52,71 @@ export default function CheckoutPage() {
   const onRemoveCoupon = () => {
     setAppliedCoupon(null);
     setCouponInput('');
+  };
+
+  const onStartPayment = () => {
+    if (!items.length) return;
+    setPaymentStep(true);
+  };
+
+  const onCompleteOrder = async () => {
+    if (!items.length) return;
+    if (!token) {
+      toast.error('Sipariş vermek için giriş yapmalısın.');
+      navigate('/login');
+      return;
+    }
+    const digits = cardNumber.replace(/\D/g, '');
+    if (!holderName.trim() || digits.length < 12 || !expMonth || !expYear || !cvc.trim()) {
+      toast.error('Kart bilgilerini tamamla');
+      return;
+    }
+
+    const address = user?.address || {};
+    const shippingAddress = {
+      street: address.street || 'Adres belirtilmedi',
+      city: address.city || 'Şehir',
+      zipCode: address.zipCode || '00000',
+      country: address.country || 'TR',
+    };
+
+    const payload = {
+      items: items.map((item) => ({
+        product: item.productId,
+        name: item.name,
+        quantity: item.qty,
+        price: item.price,
+      })),
+      shippingAddress,
+      paymentMethod: 'credit_card',
+      itemsPrice: total,
+      shippingPrice: 0,
+      totalPrice: payable,
+      isPaid: true,
+      paidAt: new Date().toISOString(),
+    };
+
+    try {
+      setSubmitting(true);
+      if (saveCard) {
+        await api.post('/users/cards', {
+          name: cardName.trim() || 'Kartım',
+          holderName: holderName.trim(),
+          number: digits,
+          expMonth: Number(expMonth),
+          expYear: Number(expYear),
+          cvc: cvc.trim(),
+        });
+      }
+      await api.post('/orders', payload);
+      dispatch(clearCart());
+      toast.success('Ödeme tamamlandı, siparişin alındı.');
+      navigate('/account/orders');
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Sipariş tamamlanamadı.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -126,9 +206,75 @@ export default function CheckoutPage() {
                 <span className="text-sm text-ink-600">Ödenecek tutar</span>
                 <span className="text-lg font-semibold text-ink-900">{formatPrice(payable)}</span>
               </div>
-              <Button className="mt-4 w-full" to="/account/orders">
-                Siparişi tamamla
-              </Button>
+              {!paymentStep ? (
+                <Button className="mt-4 w-full" onClick={onStartPayment}>
+                  Ödemeye geç
+                </Button>
+              ) : (
+                <>
+                  <div className="mt-4 rounded-2xl border border-sand-200 bg-sand-50 px-4 py-3">
+                    <p className="text-xs uppercase tracking-widest text-ink-400">Ödeme özeti</p>
+                    <p className="mt-2 text-sm text-ink-600">
+                      Kredi kartı ile ödeme alınacaktır.
+                    </p>
+                  </div>
+                  <div className="mt-4 grid gap-3">
+                    <input
+                      value={cardName}
+                      onChange={(event) => setCardName(event.target.value)}
+                      className="w-full rounded-2xl border border-sand-200 px-4 py-2 text-sm text-ink-900 focus:outline-none"
+                      placeholder="Kart ismi (opsiyonel)"
+                    />
+                    <input
+                      value={holderName}
+                      onChange={(event) => setHolderName(event.target.value)}
+                      className="w-full rounded-2xl border border-sand-200 px-4 py-2 text-sm text-ink-900 focus:outline-none"
+                      placeholder="Kart üzerindeki isim"
+                    />
+                    <input
+                      value={cardNumber}
+                      onChange={(event) => setCardNumber(event.target.value)}
+                      className="w-full rounded-2xl border border-sand-200 px-4 py-2 text-sm text-ink-900 focus:outline-none"
+                      placeholder="Kart numarası"
+                      inputMode="numeric"
+                    />
+                    <div className="grid gap-3 sm:grid-cols-3">
+                      <input
+                        value={expMonth}
+                        onChange={(event) => setExpMonth(event.target.value.replace(/\D/g, '').slice(0, 2))}
+                        className="w-full rounded-2xl border border-sand-200 px-4 py-2 text-sm text-ink-900 focus:outline-none"
+                        placeholder="Ay"
+                        inputMode="numeric"
+                      />
+                      <input
+                        value={expYear}
+                        onChange={(event) => setExpYear(event.target.value.replace(/\D/g, '').slice(0, 4))}
+                        className="w-full rounded-2xl border border-sand-200 px-4 py-2 text-sm text-ink-900 focus:outline-none"
+                        placeholder="Yıl"
+                        inputMode="numeric"
+                      />
+                      <input
+                        value={cvc}
+                        onChange={(event) => setCvc(event.target.value.replace(/\D/g, '').slice(0, 4))}
+                        className="w-full rounded-2xl border border-sand-200 px-4 py-2 text-sm text-ink-900 focus:outline-none"
+                        placeholder="CVC"
+                        inputMode="numeric"
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 text-xs text-ink-500">
+                      <input
+                        type="checkbox"
+                        checked={saveCard}
+                        onChange={(event) => setSaveCard(event.target.checked)}
+                      />
+                      Kartımı kaydet (sonraki ödemeler için)
+                    </label>
+                  </div>
+                  <Button className="mt-4 w-full" onClick={onCompleteOrder} disabled={submitting}>
+                    {submitting ? 'Isleniyor...' : 'Odemeyi tamamla'}
+                  </Button>
+                </>
+              )}
               <Button variant="ghost" className="mt-3 w-full" to="/cart">
                 Sepete geri dön
               </Button>

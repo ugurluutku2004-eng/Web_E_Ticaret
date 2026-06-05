@@ -15,6 +15,18 @@ const userSchema = new mongoose.Schema(
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
     address: { street: String, city: String, zipCode: String, country: String },
     phone: { type: String },
+    cards: [
+      {
+        name: { type: String, required: true, trim: true },
+        holderName: { type: String, required: true, trim: true },
+        number: { type: String, required: true },
+        expMonth: { type: Number, required: true, min: 1, max: 12 },
+        expYear: { type: Number, required: true },
+        cvc: { type: String, required: true },
+        brand: { type: String, default: 'unknown' },
+        last4: { type: String, required: true },
+      },
+    ],
   },
   { timestamps: true }
 );
